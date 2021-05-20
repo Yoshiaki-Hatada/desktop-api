@@ -79,7 +79,8 @@ All URIs are relative to *http://localhost/var/run/docker-cli.sock*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*MetricsApi* | [**SubmitMetrics**](docs/MetricsApi.md#submitmetrics) | **Post** /usage | 
+*MetricsApi* | [**PostMetrics**](docs/MetricsApi.md#postmetrics) | **Post** /usage | Metrics endpoint
+*UuidApi* | [**GetUuid**](docs/UuidApi.md#getuuid) | **Get** /uuid | UUID endpoint
 
 
 ## Documentation For Models

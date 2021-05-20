@@ -4,10 +4,12 @@
 README.md
 api/openapi.yaml
 api_metrics.go
+api_uuid.go
 client.go
 configuration.go
 docs/MetricsApi.md
 docs/MetricsCommand.md
+docs/UuidApi.md
 git_push.sh
 go.mod
 go.sum

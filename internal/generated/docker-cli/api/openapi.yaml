@@ -22,11 +22,12 @@ servers:
 tags:
 - name: docker desktop cli
 - name: metrics
+- name: uuid
 paths:
   /usage:
     post:
       description: Submits metrics about a given command
-      operationId: submitMetrics
+      operationId: postMetrics
       requestBody:
         content:
           application/json:
@@ -38,8 +39,19 @@ paths:
         "200":
           content: {}
           description: Metrics successfully submitted
+      summary: Metrics endpoint
       tags:
       - metrics
+  /uuid:
+    get:
+      description: UUID endpoint to get Docker Desktop UUID
+      operationId: get-uuid
+      responses:
+        "200":
+          description: OK
+      summary: UUID endpoint
+      tags:
+      - uuid
 components:
   schemas:
     MetricsCommand:

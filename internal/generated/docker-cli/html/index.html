@@ -890,8 +890,12 @@ ul.nav-tabs {
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Metrics"><a href="#api-Metrics">API Methods - Metrics</a></li>
-                    <li data-group="Metrics" data-name="submitMetrics" class="">
-                      <a href="#api-Metrics-submitMetrics">submitMetrics</a>
+                    <li data-group="Metrics" data-name="postMetrics" class="">
+                      <a href="#api-Metrics-postMetrics">postMetrics</a>
+                    </li>
+                  <li class="nav-header" data-group="Uuid"><a href="#api-Uuid">API Methods - Uuid</a></li>
+                    <li data-group="Uuid" data-name="getUuid" class="">
+                      <a href="#api-Uuid-getUuid">getUuid</a>
                     </li>
           </ul>
         </nav>
@@ -916,11 +920,11 @@ ul.nav-tabs {
         <div id="sections">
                 <section id="api-Metrics">
                   <h1>Metrics</h1>
-                    <div id="api-Metrics-submitMetrics">
-                      <article id="api-Metrics-submitMetrics-0" data-group="User" data-name="submitMetrics" data-version="0">
+                    <div id="api-Metrics-postMetrics">
+                      <article id="api-Metrics-postMetrics-0" data-group="User" data-name="postMetrics" data-version="0">
                         <div class="pull-left">
-                          <h1>submitMetrics</h1>
-                          <p></p>
+                          <h1>postMetrics</h1>
+                          <p>Metrics endpoint</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
@@ -933,27 +937,27 @@ ul.nav-tabs {
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Metrics-submitMetrics-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Metrics-submitMetrics-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Metrics-submitMetrics-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Metrics-submitMetrics-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Metrics-postMetrics-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Metrics-postMetrics-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Metrics-postMetrics-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Metrics-postMetrics-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Metrics-submitMetrics-0-curl">
+                          <div class="tab-pane active" id="examples-Metrics-postMetrics-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST\
  -H "Content-Type: application/json"\
  "http://localhost/var/run/docker-cli.sock/usage"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Metrics-submitMetrics-0-java">
+                          <div class="tab-pane" id="examples-Metrics-postMetrics-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.model.*;
@@ -970,9 +974,9 @@ public class MetricsApiExample {
         MetricsCommand metricsCommand = ; // MetricsCommand | 
         
         try {
-            apiInstance.submitMetrics(metricsCommand);
+            apiInstance.postMetrics(metricsCommand);
         } catch (ApiException e) {
-            System.err.println("Exception when calling MetricsApi#submitMetrics");
+            System.err.println("Exception when calling MetricsApi#postMetrics");
             e.printStackTrace();
         }
     }
@@ -980,7 +984,7 @@ public class MetricsApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Metrics-submitMetrics-0-android">
+                          <div class="tab-pane" id="examples-Metrics-postMetrics-0-android">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.MetricsApi;
 
 public class MetricsApiExample {
@@ -989,26 +993,27 @@ public class MetricsApiExample {
         MetricsCommand metricsCommand = ; // MetricsCommand | 
         
         try {
-            apiInstance.submitMetrics(metricsCommand);
+            apiInstance.postMetrics(metricsCommand);
         } catch (ApiException e) {
-            System.err.println("Exception when calling MetricsApi#submitMetrics");
+            System.err.println("Exception when calling MetricsApi#postMetrics");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Metrics-submitMetrics-0-groovy">
+  <div class="tab-pane" id="examples-Metrics-postMetrics-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-objc">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 
 // Create an instance of the API class
 MetricsApi *apiInstance = [[MetricsApi alloc] init];
 MetricsCommand *metricsCommand = ; // 
 
-[apiInstance submitMetricsWith:metricsCommand
+// Metrics endpoint
+[apiInstance postMetricsWith:metricsCommand
               completionHandler: ^(NSError* error) {
     if (error) {
         NSLog(@"Error: %@", error);
@@ -1017,7 +1022,7 @@ MetricsCommand *metricsCommand = ; //
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-javascript">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var DockerDesktopCliApi = require('docker_desktop_cli_api');
 
 // Create an instance of the API class
@@ -1031,14 +1036,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.submitMetrics(metricsCommand, callback);
+api.postMetrics(metricsCommand, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Metrics-submitMetrics-0-angular">
+                            <!--<div class="tab-pane" id="examples-Metrics-postMetrics-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-csharp">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
@@ -1047,7 +1052,7 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class submitMetricsExample
+    public class postMetricsExample
     {
         public void main()
         {
@@ -1057,9 +1062,10 @@ namespace Example
             var metricsCommand = new MetricsCommand(); // MetricsCommand | 
 
             try {
-                apiInstance.submitMetrics(metricsCommand);
+                // Metrics endpoint
+                apiInstance.postMetrics(metricsCommand);
             } catch (Exception e) {
-                Debug.Print("Exception when calling MetricsApi.submitMetrics: " + e.Message );
+                Debug.Print("Exception when calling MetricsApi.postMetrics: " + e.Message );
             }
         }
     }
@@ -1067,7 +1073,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-php">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1076,14 +1082,14 @@ $api_instance = new OpenAPITools\Client\Api\MetricsApi();
 $metricsCommand = ; // MetricsCommand | 
 
 try {
-    $api_instance->submitMetrics($metricsCommand);
+    $api_instance->postMetrics($metricsCommand);
 } catch (Exception $e) {
-    echo 'Exception when calling MetricsApi->submitMetrics: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetricsApi->postMetrics: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-perl">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
 use WWW::OPenAPIClient::MetricsApi;
@@ -1093,14 +1099,14 @@ my $api_instance = WWW::OPenAPIClient::MetricsApi->new();
 my $metricsCommand = WWW::OPenAPIClient::Object::MetricsCommand->new(); # MetricsCommand | 
 
 eval { 
-    $api_instance->submitMetrics(metricsCommand => $metricsCommand);
+    $api_instance->postMetrics(metricsCommand => $metricsCommand);
 };
 if ($@) {
-    warn "Exception when calling MetricsApi->submitMetrics: $@\n";
+    warn "Exception when calling MetricsApi->postMetrics: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-python">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import openapi_client
@@ -1112,19 +1118,20 @@ api_instance = openapi_client.MetricsApi()
 metricsCommand =  # MetricsCommand | 
 
 try: 
-    api_instance.submit_metrics(metricsCommand)
+    # Metrics endpoint
+    api_instance.post_metrics(metricsCommand)
 except ApiException as e:
-    print("Exception when calling MetricsApi->submitMetrics: %s\n" % e)</code></pre>
+    print("Exception when calling MetricsApi->postMetrics: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Metrics-submitMetrics-0-rust">
+                            <div class="tab-pane" id="examples-Metrics-postMetrics-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate MetricsApi;
 
 pub fn main() {
     let metricsCommand = ; // MetricsCommand
 
     let mut context = MetricsApi::Context::default();
-    let result = client.submitMetrics(metricsCommand, &context).wait();
+    let result = client.postMetrics(metricsCommand, &context).wait();
 
     println!("{:?}", result);
 }
@@ -1178,12 +1185,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_submitMetrics_metricsCommand');
+  var result = $('#d2e199_postMetrics_metricsCommand');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_submitMetrics_metricsCommand"></div>
+<div id="d2e199_postMetrics_metricsCommand"></div>
 </td>
 </tr>
 
@@ -1192,27 +1199,276 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-Metrics-submitMetrics-title-200"></h3>
-                            <p id="examples-Metrics-submitMetrics-description-200" class="marked"></p>
+                            <h3 id="examples-Metrics-postMetrics-title-200"></h3>
+                            <p id="examples-Metrics-postMetrics-description-200" class="marked"></p>
                             <script>
                               var responseMetrics200_description = `Metrics successfully submitted`;
                               var responseMetrics200_description_break = responseMetrics200_description.indexOf('\n');
                               if (responseMetrics200_description_break == -1) {
-                                $("#examples-Metrics-submitMetrics-title-200").text("Status: 200 - " + responseMetrics200_description);
+                                $("#examples-Metrics-postMetrics-title-200").text("Status: 200 - " + responseMetrics200_description);
                               } else {
-                                $("#examples-Metrics-submitMetrics-title-200").text("Status: 200 - " + responseMetrics200_description.substring(0, responseMetrics200_description_break));
-                                $("#examples-Metrics-submitMetrics-description-200").html(responseMetrics200_description.substring(responseMetrics200_description_break));
+                                $("#examples-Metrics-postMetrics-title-200").text("Status: 200 - " + responseMetrics200_description.substring(0, responseMetrics200_description_break));
+                                $("#examples-Metrics-postMetrics-description-200").html(responseMetrics200_description.substring(responseMetrics200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Metrics-submitMetrics-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Metrics-postMetrics-200" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Metrics-submitMetrics-200-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Metrics-postMetrics-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-Uuid">
+                  <h1>Uuid</h1>
+                    <div id="api-Uuid-getUuid">
+                      <article id="api-Uuid-getUuid-0" data-group="User" data-name="getUuid" data-version="0">
+                        <div class="pull-left">
+                          <h1>getUuid</h1>
+                          <p>UUID endpoint</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">UUID endpoint to get Docker Desktop UUID</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/uuid</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Uuid-getUuid-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Uuid-getUuid-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Uuid-getUuid-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Uuid-getUuid-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Uuid-getUuid-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Uuid-getUuid-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Uuid-getUuid-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+ "http://localhost/var/run/docker-cli.sock/uuid"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Uuid-getUuid-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.UuidApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UuidApiExample {
+    public static void main(String[] args) {
+        
+        // Create an instance of the API class
+        UuidApi apiInstance = new UuidApi();
+        
+        try {
+            apiInstance.getUuid();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UuidApi#getUuid");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Uuid-getUuid-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.UuidApi;
+
+public class UuidApiExample {
+    public static void main(String[] args) {
+        UuidApi apiInstance = new UuidApi();
+        
+        try {
+            apiInstance.getUuid();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UuidApi#getUuid");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Uuid-getUuid-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+UuidApi *apiInstance = [[UuidApi alloc] init];
+
+// UUID endpoint
+[apiInstance getUuidWithCompletionHandler: 
+              ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DockerDesktopCliApi = require('docker_desktop_cli_api');
+
+// Create an instance of the API class
+var api = new DockerDesktopCliApi.UuidApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.getUuid(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Uuid-getUuid-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class getUuidExample
+    {
+        public void main()
+        {
+            
+            // Create an instance of the API class
+            var apiInstance = new UuidApi();
+
+            try {
+                // UUID endpoint
+                apiInstance.getUuid();
+            } catch (Exception e) {
+                Debug.Print("Exception when calling UuidApi.getUuid: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\UuidApi();
+
+try {
+    $api_instance->getUuid();
+} catch (Exception $e) {
+    echo 'Exception when calling UuidApi->getUuid: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::UuidApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::UuidApi->new();
+
+eval { 
+    $api_instance->getUuid();
+};
+if ($@) {
+    warn "Exception when calling UuidApi->getUuid: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.UuidApi()
+
+try: 
+    # UUID endpoint
+    api_instance.get_uuid()
+except ApiException as e:
+    print("Exception when calling UuidApi->getUuid: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Uuid-getUuid-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate UuidApi;
+
+pub fn main() {
+
+    let mut context = UuidApi::Context::default();
+    let result = client.getUuid(&context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Uuid-getUuid-title-200"></h3>
+                            <p id="examples-Uuid-getUuid-description-200" class="marked"></p>
+                            <script>
+                              var responseUuid200_description = `OK`;
+                              var responseUuid200_description_break = responseUuid200_description.indexOf('\n');
+                              if (responseUuid200_description_break == -1) {
+                                $("#examples-Uuid-getUuid-title-200").text("Status: 200 - " + responseUuid200_description);
+                              } else {
+                                $("#examples-Uuid-getUuid-title-200").text("Status: 200 - " + responseUuid200_description.substring(0, responseUuid200_description_break));
+                                $("#examples-Uuid-getUuid-description-200").html(responseUuid200_description.substring(responseUuid200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Uuid-getUuid-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Uuid-getUuid-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

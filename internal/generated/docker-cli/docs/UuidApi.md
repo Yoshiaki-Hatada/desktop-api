@@ -1,18 +1,18 @@
-# \MetricsApi
+# \UuidApi
 
 All URIs are relative to *http://localhost/var/run/docker-cli.sock*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PostMetrics**](MetricsApi.md#PostMetrics) | **Post** /usage | Metrics endpoint
+[**GetUuid**](UuidApi.md#GetUuid) | **Get** /uuid | UUID endpoint
 
 
 
-## PostMetrics
+## GetUuid
 
-> PostMetrics(ctx).MetricsCommand(metricsCommand).Execute()
+> GetUuid(ctx).Execute()
 
-Metrics endpoint
+UUID endpoint
 
 
 
@@ -29,13 +29,12 @@ import (
 )
 
 func main() {
-    metricsCommand := *openapiclient.NewMetricsCommand() // MetricsCommand | Submits a new metrics entry
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PostMetrics(context.Background()).MetricsCommand(metricsCommand).Execute()
+    resp, r, err := api_client.UuidApi.GetUuid(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UuidApi.GetUuid``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -43,16 +42,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPostMetricsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetUuidRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **metricsCommand** | [**MetricsCommand**](MetricsCommand.md) | Submits a new metrics entry | 
 
 ### Return type
 
@@ -64,7 +59,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

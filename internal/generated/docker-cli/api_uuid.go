@@ -24,48 +24,43 @@ var (
 	_ _context.Context
 )
 
-type MetricsApi interface {
+type UuidApi interface {
 
 	/*
-	 * PostMetrics Metrics endpoint
-	 * Submits metrics about a given command
+	 * GetUuid UUID endpoint
+	 * UUID endpoint to get Docker Desktop UUID
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return ApiPostMetricsRequest
+	 * @return ApiGetUuidRequest
 	 */
-	PostMetrics(ctx _context.Context) ApiPostMetricsRequest
+	GetUuid(ctx _context.Context) ApiGetUuidRequest
 
 	/*
-	 * PostMetricsExecute executes the request
+	 * GetUuidExecute executes the request
 	 */
-	PostMetricsExecute(r ApiPostMetricsRequest) (*_nethttp.Response, error)
+	GetUuidExecute(r ApiGetUuidRequest) (*_nethttp.Response, error)
 }
 
-// MetricsApiService MetricsApi service
-type MetricsApiService service
+// UuidApiService UuidApi service
+type UuidApiService service
 
-type ApiPostMetricsRequest struct {
+type ApiGetUuidRequest struct {
 	ctx _context.Context
-	ApiService MetricsApi
-	metricsCommand *MetricsCommand
+	ApiService UuidApi
 }
 
-func (r ApiPostMetricsRequest) MetricsCommand(metricsCommand MetricsCommand) ApiPostMetricsRequest {
-	r.metricsCommand = &metricsCommand
-	return r
-}
 
-func (r ApiPostMetricsRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.PostMetricsExecute(r)
+func (r ApiGetUuidRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.GetUuidExecute(r)
 }
 
 /*
- * PostMetrics Metrics endpoint
- * Submits metrics about a given command
+ * GetUuid UUID endpoint
+ * UUID endpoint to get Docker Desktop UUID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiPostMetricsRequest
+ * @return ApiGetUuidRequest
  */
-func (a *MetricsApiService) PostMetrics(ctx _context.Context) ApiPostMetricsRequest {
-	return ApiPostMetricsRequest{
+func (a *UuidApiService) GetUuid(ctx _context.Context) ApiGetUuidRequest {
+	return ApiGetUuidRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -74,31 +69,28 @@ func (a *MetricsApiService) PostMetrics(ctx _context.Context) ApiPostMetricsRequ
 /*
  * Execute executes the request
  */
-func (a *MetricsApiService) PostMetricsExecute(r ApiPostMetricsRequest) (*_nethttp.Response, error) {
+func (a *UuidApiService) GetUuidExecute(r ApiGetUuidRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.PostMetrics")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UuidApiService.GetUuid")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/usage"
+	localVarPath := localBasePath + "/uuid"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.metricsCommand == nil {
-		return nil, reportError("metricsCommand is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -114,8 +106,6 @@ func (a *MetricsApiService) PostMetricsExecute(r ApiPostMetricsRequest) (*_netht
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.metricsCommand
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err

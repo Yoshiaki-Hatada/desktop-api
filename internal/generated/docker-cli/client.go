@@ -50,6 +50,8 @@ type APIClient struct {
 	// API Services
 
 	MetricsApi MetricsApi
+
+	UuidApi UuidApi
 }
 
 type service struct {
@@ -69,6 +71,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.MetricsApi = (*MetricsApiService)(&c.common)
+	c.UuidApi = (*UuidApiService)(&c.common)
 
 	return c
 }

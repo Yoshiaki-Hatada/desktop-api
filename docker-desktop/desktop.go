@@ -25,31 +25,18 @@ import (
 	dockercliapi "github.com/ulyssessouza/desktop-api/internal/generated/docker-cli"
 )
 
+type DockerDesktopClient struct {
+	*dockercliapi.APIClient
+}
+
 func NewDockerDesktopClient() *DockerDesktopClient {
 	return &DockerDesktopClient{
 		APIClient: dockercliapi.NewAPIClient(getDockerCliConfiguration()),
 	}
 }
 
-type DockerDesktopClient struct {
-	*dockercliapi.APIClient
-}
-
-func NewMetricsCommand() MetricsCommand {
-	return MetricsCommand{
-		Status: MetricsSuccessStatus,
-	}
-}
-
-type MetricsCommand struct {
-	Command string `json:"command,omitempty"`
-	Context string `json:"context,omitempty"`
-	Source  string `json:"source,omitempty"`
-	Status  string `json:"status,omitempty"`
-}
-
 func (d DockerDesktopClient) SendMetrics(ctx context.Context, metrics MetricsCommand) (*http.Response, error) {
-	r := d.MetricsApi.SubmitMetrics(ctx)
+	r := d.MetricsApi.PostMetrics(ctx)
 	m := dockercliapi.MetricsCommand{
 		Command: &metrics.Command,
 		Context: &metrics.Context,
@@ -59,6 +46,10 @@ func (d DockerDesktopClient) SendMetrics(ctx context.Context, metrics MetricsCom
 	return r.MetricsCommand(m).Execute()
 }
 
+func (d DockerDesktopClient) GetUUID(ctx context.Context) (*http.Response, error) {
+	return d.UuidApi.GetUuid(ctx).Execute()
+}
+
 func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg := dockercliapi.NewConfiguration()
 	dockercliapiCfg.Host = "localhost"
@@ -66,7 +57,7 @@ func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg.UserAgent = userAgent
 	dockercliapiCfg.Servers = dockercliapi.ServerConfigurations{
 		dockercliapi.ServerConfiguration{
-			URL:         "",
+			URL: "",
 		},
 	}
 	dockercliapiCfg.HTTPClient = &http.Client{
