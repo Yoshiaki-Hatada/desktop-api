@@ -14,11 +14,13 @@
    limitations under the License.
 */
 
-package desktop
+package desktop_api
+
+import "github.com/ulyssessouza/desktop-api/utils"
 
 func NewMetricsCommand() MetricsCommand {
 	return MetricsCommand{
-		Status: MetricsSuccessStatus,
+		Status: utils.MetricsSuccessStatus,
 	}
 }
 

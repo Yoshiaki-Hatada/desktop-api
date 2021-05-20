@@ -20,10 +20,11 @@ import (
 	"context"
 	"testing"
 
+	"github.com/ulyssessouza/desktop-api"
+	"github.com/ulyssessouza/desktop-api/utils"
 	"gotest.tools/v3/assert"
 
-	desktop "github.com/ulyssessouza/desktop-api/docker-desktop"
-	"github.com/ulyssessouza/desktop-api/docker-desktop/desktopcli"
+	"github.com/ulyssessouza/desktop-api/desktopcli"
 	"github.com/ulyssessouza/desktop-api/utils/e2e"
 )
 
@@ -33,17 +34,17 @@ func TestComposeMetrics(t *testing.T) {
 	defer s.Stop()
 
 	t.Run("catch default metrics", func(t *testing.T) {
-		client := desktop.NewDockerDesktopClient()
+		client := desktop_api.NewDockerDesktopClient()
 		statuses := []string{
-			desktop.MetricsSuccessStatus,
-			desktop.MetricsComposeParseFailureStatus,
-			desktop.MetricsFileNotFoundFailureStatus,
-			desktop.MetricsCommandSyntaxFailureStatus,
-			desktop.MetricsPullFailureStatus,
-			desktop.MetricsBuildFailureStatus,
+			utils.MetricsSuccessStatus,
+			utils.MetricsComposeParseFailureStatus,
+			utils.MetricsFileNotFoundFailureStatus,
+			utils.MetricsCommandSyntaxFailureStatus,
+			utils.MetricsPullFailureStatus,
+			utils.MetricsBuildFailureStatus,
 		}
 		for _, s := range statuses {
-			_, err := client.SendMetrics(context.Background(), desktop.MetricsCommand{
+			_, err := client.SendMetrics(context.Background(), desktop_api.MetricsCommand{
 				Command: "test",
 				Context: "moby",
 				Source:  "e2e-test",

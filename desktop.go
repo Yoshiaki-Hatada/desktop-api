@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-package desktop
+package desktop_api
 
 import (
 	"context"
@@ -23,8 +23,9 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/ulyssessouza/desktop-api/docker-desktop/desktopcli"
+	"github.com/ulyssessouza/desktop-api/desktopcli"
 	dockercliapi "github.com/ulyssessouza/desktop-api/internal/generated/docker-cli"
+	"github.com/ulyssessouza/desktop-api/utils"
 )
 
 type DockerDesktopClient struct {
@@ -70,9 +71,9 @@ func (d DockerDesktopClient) GetUUID(ctx context.Context) (string, error) {
 
 func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg := dockercliapi.NewConfiguration()
-	dockercliapiCfg.Host = "localhost"
 	dockercliapiCfg.Scheme = "http"
-	dockercliapiCfg.UserAgent = userAgent
+	dockercliapiCfg.Host = utils.DummyHost
+	dockercliapiCfg.UserAgent = utils.UserAgent
 	dockercliapiCfg.Servers = dockercliapi.ServerConfigurations{
 		dockercliapi.ServerConfiguration{
 			URL: "",

@@ -26,7 +26,8 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
-	desktop "github.com/ulyssessouza/desktop-api/docker-desktop"
+	"github.com/ulyssessouza/desktop-api"
+	"github.com/ulyssessouza/desktop-api/utils"
 )
 
 // MockMetricsServer a mock registering all metrics POST invocations
@@ -85,12 +86,12 @@ func (s *MockMetricsServer) Start() {
 // StartReady start the mock server
 func (s *MockMetricsServer) StartReady() error {
 	s.Start()
-	client := desktop.NewDockerDesktopClient()
-	metricsCommand := desktop.MetricsCommand{
+	client := desktop_api.NewDockerDesktopClient()
+	metricsCommand := desktop_api.MetricsCommand{
 		Command: "test",
 		Source:  "e2e-test",
 		Context: "default",
-		Status:  desktop.MetricsSuccessStatus,
+		Status:  utils.MetricsSuccessStatus,
 	}
 	for i := 0; i < 10; i++ {
 		_, err := client.SendMetrics(context.Background(), metricsCommand)

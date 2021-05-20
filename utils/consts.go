@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
-package desktop
+package utils
 
 const (
-	dummyHost = "http://localhost"
-	userAgent = "Docker Desktop API"
+	DummyHost = "localhost"
+	UserAgent = "Docker Desktop API"
 )
 
 const (
