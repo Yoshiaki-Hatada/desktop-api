@@ -18,6 +18,8 @@ package desktop
 
 import (
 	"context"
+	"fmt"
+	"io/ioutil"
 	"net"
 	"net/http"
 
@@ -46,8 +48,24 @@ func (d DockerDesktopClient) SendMetrics(ctx context.Context, metrics MetricsCom
 	return r.MetricsCommand(m).Execute()
 }
 
-func (d DockerDesktopClient) GetUUID(ctx context.Context) (*http.Response, error) {
-	return d.UuidApi.GetUuid(ctx).Execute()
+func (d DockerDesktopClient) GetUUID(ctx context.Context) (string, error) {
+	r, err := d.UuidApi.GetUuid(ctx).Execute()
+	if err != nil {
+		return "", err
+	}
+	if r.StatusCode != 200 {
+		return "", fmt.Errorf("status %d while getting uuid", r.StatusCode)
+	}
+	body, err := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err != nil {
+		return "", err
+	}
+	result := string(body)
+	if result == "" {
+		return "", fmt.Errorf("empty UUID")
+	}
+	return result, nil
 }
 
 func getDockerCliConfiguration() *dockercliapi.Configuration {
