@@ -27,7 +27,6 @@ import (
 
 	"github.com/labstack/echo"
 	"github.com/ulyssessouza/desktop-api"
-	"github.com/ulyssessouza/desktop-api/utils"
 )
 
 // MockMetricsServer a mock registering all metrics POST invocations
@@ -91,7 +90,7 @@ func (s *MockMetricsServer) StartReady() error {
 		Command: "test",
 		Source:  "e2e-test",
 		Context: "default",
-		Status:  utils.MetricsSuccessStatus,
+		Status:  desktop_api.MetricsSuccessStatus,
 	}
 	for i := 0; i < 10; i++ {
 		_, err := client.SendMetrics(context.Background(), metricsCommand)

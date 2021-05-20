@@ -16,11 +16,9 @@
 
 package desktop_api
 
-import "github.com/ulyssessouza/desktop-api/utils"
-
 func NewMetricsCommand() MetricsCommand {
 	return MetricsCommand{
-		Status: utils.MetricsSuccessStatus,
+		Status: MetricsSuccessStatus,
 	}
 }
 

@@ -25,7 +25,6 @@ import (
 
 	"github.com/ulyssessouza/desktop-api/desktopcli"
 	dockercliapi "github.com/ulyssessouza/desktop-api/internal/generated/docker-cli"
-	"github.com/ulyssessouza/desktop-api/utils"
 )
 
 type DockerDesktopClient struct {
@@ -72,8 +71,8 @@ func (d DockerDesktopClient) GetUUID(ctx context.Context) (string, error) {
 func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg := dockercliapi.NewConfiguration()
 	dockercliapiCfg.Scheme = "http"
-	dockercliapiCfg.Host = utils.DummyHost
-	dockercliapiCfg.UserAgent = utils.UserAgent
+	dockercliapiCfg.Host = DummyHost
+	dockercliapiCfg.UserAgent = UserAgent
 	dockercliapiCfg.Servers = dockercliapi.ServerConfigurations{
 		dockercliapi.ServerConfiguration{
 			URL: "",

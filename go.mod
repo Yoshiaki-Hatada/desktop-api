@@ -1,4 +1,4 @@
-module github.com/ulyssessouza/desktop-api
+module github.com/docker/desktop-api
 
 go 1.16
 

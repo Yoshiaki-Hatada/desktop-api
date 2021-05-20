@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-package utils
+package desktop_api
 
 const (
 	DummyHost = "localhost"
@@ -32,9 +32,9 @@ const (
 	MetricsFileNotFoundFailureStatus = "failure-file-not-found"
 	// MetricsCommandSyntaxFailureStatus failure reading command
 	MetricsCommandSyntaxFailureStatus = "failure-cmd-syntax"
-	// MetricsBuildFailureStatus failure building imge
+	// MetricsBuildFailureStatus failure building image
 	MetricsBuildFailureStatus = "failure-build"
-	// MetricsPullFailureStatus failure pulling imge
+	// MetricsPullFailureStatus failure pulling image
 	MetricsPullFailureStatus = "failure-pull"
 	// MetricsCanceledStatus command canceled
 	MetricsCanceledStatus = "canceled"

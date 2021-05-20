@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/ulyssessouza/desktop-api"
-	"github.com/ulyssessouza/desktop-api/utils"
 	"gotest.tools/v3/assert"
 
 	"github.com/ulyssessouza/desktop-api/desktopcli"
@@ -36,12 +35,12 @@ func TestComposeMetrics(t *testing.T) {
 	t.Run("catch default metrics", func(t *testing.T) {
 		client := desktop_api.NewDockerDesktopClient()
 		statuses := []string{
-			utils.MetricsSuccessStatus,
-			utils.MetricsComposeParseFailureStatus,
-			utils.MetricsFileNotFoundFailureStatus,
-			utils.MetricsCommandSyntaxFailureStatus,
-			utils.MetricsPullFailureStatus,
-			utils.MetricsBuildFailureStatus,
+			desktop_api.MetricsSuccessStatus,
+			desktop_api.MetricsComposeParseFailureStatus,
+			desktop_api.MetricsFileNotFoundFailureStatus,
+			desktop_api.MetricsCommandSyntaxFailureStatus,
+			desktop_api.MetricsPullFailureStatus,
+			desktop_api.MetricsBuildFailureStatus,
 		}
 		for _, s := range statuses {
 			_, err := client.SendMetrics(context.Background(), desktop_api.MetricsCommand{
