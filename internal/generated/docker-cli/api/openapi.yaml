@@ -15,10 +15,7 @@ externalDocs:
   description: Find out more about Docker Desktop API
   url: https://docs.docker.com/desktop/api/
 servers:
-- description: MacOS
-  url: /var/run/docker-cli.sock
-- description: Windows
-  url: \\\\.\\pipe\\docker_cli
+- url: /
 tags:
 - name: docker desktop cli
 - name: metrics

@@ -106,12 +106,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "/var/run/docker-cli.sock",
-				Description: "MacOS",
-			},
-			{
-				URL: "\\\\.\\pipe\\docker_cli",
-				Description: "Windows",
+				URL: "",
+				Description: "No description provided",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{

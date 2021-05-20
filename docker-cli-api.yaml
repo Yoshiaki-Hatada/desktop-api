@@ -18,11 +18,6 @@ tags:
   - name: docker desktop cli
   - name: metrics
   - name: uuid
-servers:
-  - url: /var/run/docker-cli.sock
-    description: MacOS
-  - url: \\\\.\\pipe\\docker_cli
-    description: Windows
 paths:
   /usage:
     post:

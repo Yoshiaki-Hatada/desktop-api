@@ -1,6 +1,6 @@
 # \UuidApi
 
-All URIs are relative to *http://localhost/var/run/docker-cli.sock*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
