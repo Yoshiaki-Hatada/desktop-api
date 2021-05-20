@@ -1,0 +1,71 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@docker.com
+    url: 'https://www.docker.com/company/contact'
+    name: Docker Inc.
+  description: This is the Docker Desktop CLI API
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'https://www.docker.com/legal/docker-terms-service'
+  title: Docker Desktop CLI API
+  version: 0.1.0
+externalDocs:
+  description: Find out more about Docker Desktop API
+  url: 'https://docs.docker.com/desktop/api/'
+tags:
+  - name: docker desktop cli
+  - name: metrics
+servers:
+  - url: '/var/run/docker-cli.sock'
+    description: MacOS
+  - url: '\\\\.\\pipe\\docker_cli'
+    description: Windows
+paths:
+  /usage:
+    post:
+      tags:
+        - metrics
+      description: Submits metrics about a given command
+      operationId: submitMetrics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetricsCommand'
+        description: Submits a new metrics entry
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: Metrics successfully submitted
+    parameters: []
+components:
+  schemas:
+    MetricsCommand:
+      type: object
+      title: Metrics Command
+      properties:
+        command:
+          type: string
+        context:
+          type: string
+        source:
+          type: string
+        status:
+          type: string
+          enum:
+            - success
+            - failure
+            - failure-compose-parse
+            - failure-file-not-found
+            - failure-cmd-syntax
+            - failure-build
+            - failure-pull
+            - canceled
+      example:
+        command: compose up
+        context: default
+        source: cli
+        status: success
