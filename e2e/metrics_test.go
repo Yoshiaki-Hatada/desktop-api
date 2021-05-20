@@ -20,11 +20,11 @@ import (
 	"context"
 	"testing"
 
-	"github.com/ulyssessouza/desktop-api"
+	"github.com/docker/desktop-api"
 	"gotest.tools/v3/assert"
 
-	"github.com/ulyssessouza/desktop-api/desktopcli"
-	"github.com/ulyssessouza/desktop-api/utils/e2e"
+	"github.com/docker/desktop-api/desktopcli"
+	"github.com/docker/desktop-api/utils/e2e"
 )
 
 func TestComposeMetrics(t *testing.T) {

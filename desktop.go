@@ -23,8 +23,8 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/ulyssessouza/desktop-api/desktopcli"
-	dockercliapi "github.com/ulyssessouza/desktop-api/internal/generated/docker-cli"
+	"github.com/docker/desktop-api/desktopcli"
+	dockercliapi "github.com/docker/desktop-api/internal/generated/docker-cli"
 )
 
 type DockerDesktopClient struct {
