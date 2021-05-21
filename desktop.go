@@ -22,6 +22,7 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"time"
 
 	"github.com/docker/desktop-api/desktopcli"
 	dockercliapi "github.com/docker/desktop-api/internal/generated/docker-cli"
@@ -35,6 +36,14 @@ func NewDockerDesktopClient() *DockerDesktopClient {
 	return &DockerDesktopClient{
 		APIClient: dockercliapi.NewAPIClient(getDockerCliConfiguration()),
 	}
+}
+
+func (d *DockerDesktopClient) WithTimeout(t time.Duration) *DockerDesktopClient {
+	if d.APIClient == nil || d.APIClient.GetConfig().HTTPClient == nil {
+		return d
+	}
+	d.APIClient.GetConfig().HTTPClient.Timeout = t
+	return d
 }
 
 func (d DockerDesktopClient) SendMetrics(ctx context.Context, metrics MetricsCommand) (*http.Response, error) {
@@ -79,6 +88,7 @@ func getDockerCliConfiguration() *dockercliapi.Configuration {
 		},
 	}
 	dockercliapiCfg.HTTPClient = &http.Client{
+		Timeout: 500 * time.Millisecond,
 		Transport: &http.Transport{
 			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
 				return desktopcli.Conn()
