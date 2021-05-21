@@ -47,12 +47,17 @@ func (d *DockerDesktopClient) WithTimeout(t time.Duration) *DockerDesktopClient 
 }
 
 func (d DockerDesktopClient) SendMetrics(ctx context.Context, metrics MetricsCommand) (*http.Response, error) {
+	err := metrics.Validate()
+	if err != nil {
+		return nil, err
+	}
 	r := d.MetricsApi.PostMetrics(ctx)
+	var status = metrics.Status.String()
 	m := dockercliapi.MetricsCommand{
 		Command: &metrics.Command,
 		Context: &metrics.Context,
 		Source:  &metrics.Source,
-		Status:  &metrics.Status,
+		Status:  &status,
 	}
 	return r.MetricsCommand(m).Execute()
 }

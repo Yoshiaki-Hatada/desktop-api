@@ -44,10 +44,9 @@ type UuidApi interface {
 type UuidApiService service
 
 type ApiGetUuidRequest struct {
-	ctx _context.Context
+	ctx        _context.Context
 	ApiService UuidApi
 }
-
 
 func (r ApiGetUuidRequest) Execute() (*_nethttp.Response, error) {
 	return r.ApiService.GetUuidExecute(r)
@@ -62,7 +61,7 @@ func (r ApiGetUuidRequest) Execute() (*_nethttp.Response, error) {
 func (a *UuidApiService) GetUuid(ctx _context.Context) ApiGetUuidRequest {
 	return ApiGetUuidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 

@@ -44,8 +44,8 @@ type MetricsApi interface {
 type MetricsApiService service
 
 type ApiPostMetricsRequest struct {
-	ctx _context.Context
-	ApiService MetricsApi
+	ctx            _context.Context
+	ApiService     MetricsApi
 	metricsCommand *MetricsCommand
 }
 
@@ -67,7 +67,7 @@ func (r ApiPostMetricsRequest) Execute() (*_nethttp.Response, error) {
 func (a *MetricsApiService) PostMetrics(ctx _context.Context) ApiPostMetricsRequest {
 	return ApiPostMetricsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 

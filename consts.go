@@ -20,22 +20,3 @@ const (
 	DummyHost = "localhost"
 	UserAgent = "Docker Desktop API"
 )
-
-const (
-	// MetricsSuccessStatus command success
-	MetricsSuccessStatus = "success"
-	// MetricsFailureStatus command failure
-	MetricsFailureStatus = "failure"
-	// MetricsComposeParseFailureStatus failure while parsing compose file
-	MetricsComposeParseFailureStatus = "failure-compose-parse"
-	// MetricsFileNotFoundFailureStatus failure getting compose file
-	MetricsFileNotFoundFailureStatus = "failure-file-not-found"
-	// MetricsCommandSyntaxFailureStatus failure reading command
-	MetricsCommandSyntaxFailureStatus = "failure-cmd-syntax"
-	// MetricsBuildFailureStatus failure building image
-	MetricsBuildFailureStatus = "failure-build"
-	// MetricsPullFailureStatus failure pulling image
-	MetricsPullFailureStatus = "failure-pull"
-	// MetricsCanceledStatus command canceled
-	MetricsCanceledStatus = "canceled"
-)

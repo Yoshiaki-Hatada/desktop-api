@@ -25,8 +25,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/labstack/echo"
 	"github.com/docker/desktop-api"
+	"github.com/labstack/echo"
 )
 
 // MockMetricsServer a mock registering all metrics POST invocations
