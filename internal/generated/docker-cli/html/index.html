@@ -871,6 +871,27 @@ ul.nav-tabs {
     "status" : "success"
   }
 };
+    defs["NotificationModel"] = {
+  "title" : "Notification Model",
+  "type" : "object",
+  "properties" : {
+    "title" : {
+      "type" : "string"
+    },
+    "body" : {
+      "type" : "string"
+    },
+    "level" : {
+      "type" : "integer",
+      "enum" : [ 0, 1, 2 ]
+    }
+  },
+  "example" : {
+    "title" : "Notification title",
+    "body" : "Notification message",
+    "status" : 0
+  }
+};
 
     var errs = {};
   </script>
@@ -892,6 +913,10 @@ ul.nav-tabs {
                   <li class="nav-header" data-group="Metrics"><a href="#api-Metrics">API Methods - Metrics</a></li>
                     <li data-group="Metrics" data-name="postMetrics" class="">
                       <a href="#api-Metrics-postMetrics">postMetrics</a>
+                    </li>
+                  <li class="nav-header" data-group="Notification"><a href="#api-Notification">API Methods - Notification</a></li>
+                    <li data-group="Notification" data-name="showToast" class="">
+                      <a href="#api-Notification-showToast">showToast</a>
                     </li>
                   <li class="nav-header" data-group="Uuid"><a href="#api-Uuid">API Methods - Uuid</a></li>
                     <li data-group="Uuid" data-name="getUuid" class="">
@@ -1220,6 +1245,313 @@ $(document).ready(function() {
 
 
                             <div class="tab-content" id="responses-Metrics-postMetrics-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-Notification">
+                  <h1>Notification</h1>
+                    <div id="api-Notification-showToast">
+                      <article id="api-Notification-showToast-0" data-group="User" data-name="showToast" data-version="0">
+                        <div class="pull-left">
+                          <h1>showToast</h1>
+                          <p>GUI system toast endpoint</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Shows a notification in the form of a system toast</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/notifications</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Notification-showToast-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Notification-showToast-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Notification-showToast-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Notification-showToast-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Notification-showToast-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Notification-showToast-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Notification-showToast-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+ -H "Content-Type: application/json"\
+ "http://localhost/notifications"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Notification-showToast-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.NotificationApi;
+
+import java.io.File;
+import java.util.*;
+
+public class NotificationApiExample {
+    public static void main(String[] args) {
+        
+        // Create an instance of the API class
+        NotificationApi apiInstance = new NotificationApi();
+        NotificationModel notificationModel = ; // NotificationModel | 
+        
+        try {
+            apiInstance.showToast(notificationModel);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationApi#showToast");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Notification-showToast-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.NotificationApi;
+
+public class NotificationApiExample {
+    public static void main(String[] args) {
+        NotificationApi apiInstance = new NotificationApi();
+        NotificationModel notificationModel = ; // NotificationModel | 
+        
+        try {
+            apiInstance.showToast(notificationModel);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling NotificationApi#showToast");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Notification-showToast-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Notification-showToast-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+NotificationApi *apiInstance = [[NotificationApi alloc] init];
+NotificationModel *notificationModel = ; // 
+
+// GUI system toast endpoint
+[apiInstance showToastWith:notificationModel
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Notification-showToast-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DockerDesktopCliApi = require('docker_desktop_cli_api');
+
+// Create an instance of the API class
+var api = new DockerDesktopCliApi.NotificationApi()
+var notificationModel = ; // {NotificationModel} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.showToast(notificationModel, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Notification-showToast-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Notification-showToast-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class showToastExample
+    {
+        public void main()
+        {
+            
+            // Create an instance of the API class
+            var apiInstance = new NotificationApi();
+            var notificationModel = new NotificationModel(); // NotificationModel | 
+
+            try {
+                // GUI system toast endpoint
+                apiInstance.showToast(notificationModel);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling NotificationApi.showToast: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Notification-showToast-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\NotificationApi();
+$notificationModel = ; // NotificationModel | 
+
+try {
+    $api_instance->showToast($notificationModel);
+} catch (Exception $e) {
+    echo 'Exception when calling NotificationApi->showToast: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Notification-showToast-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::NotificationApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::NotificationApi->new();
+my $notificationModel = WWW::OPenAPIClient::Object::NotificationModel->new(); # NotificationModel | 
+
+eval { 
+    $api_instance->showToast(notificationModel => $notificationModel);
+};
+if ($@) {
+    warn "Exception when calling NotificationApi->showToast: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Notification-showToast-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.NotificationApi()
+notificationModel =  # NotificationModel | 
+
+try: 
+    # GUI system toast endpoint
+    api_instance.show_toast(notificationModel)
+except ApiException as e:
+    print("Exception when calling NotificationApi->showToast: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Notification-showToast-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate NotificationApi;
+
+pub fn main() {
+    let notificationModel = ; // NotificationModel
+
+    let mut context = NotificationApi::Context::default();
+    let result = client.showToast(notificationModel, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">notificationModel <span style="color:red;">*</span></td>
+<td>
+<p class="marked">Shows a notification in the form of a system toast</p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "description" : "Shows a notification in the form of a system toast",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/NotificationModel"
+      }
+    }
+  },
+  "required" : true
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_showToast_notificationModel');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_showToast_notificationModel"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Notification-showToast-title-200"></h3>
+                            <p id="examples-Notification-showToast-description-200" class="marked"></p>
+                            <script>
+                              var responseNotification200_description = `Notification successfully showed`;
+                              var responseNotification200_description_break = responseNotification200_description.indexOf('\n');
+                              if (responseNotification200_description_break == -1) {
+                                $("#examples-Notification-showToast-title-200").text("Status: 200 - " + responseNotification200_description);
+                              } else {
+                                $("#examples-Notification-showToast-title-200").text("Status: 200 - " + responseNotification200_description.substring(0, responseNotification200_description_break));
+                                $("#examples-Notification-showToast-description-200").html(responseNotification200_description.substring(responseNotification200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Notification-showToast-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Notification-showToast-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

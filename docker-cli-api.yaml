@@ -18,6 +18,7 @@ tags:
   - name: docker desktop cli
   - name: metrics
   - name: uuid
+  - name: notification
 paths:
   /usage:
     post:
@@ -37,7 +38,6 @@ paths:
         '200':
           content: {}
           description: Metrics successfully submitted
-    parameters: []
   /uuid:
     get:
       summary: UUID endpoint
@@ -48,6 +48,25 @@ paths:
           description: OK
       operationId: get-uuid
       description: UUID endpoint to get Docker Desktop UUID
+  /notifications:
+    post:
+      summary: GUI system toast endpoint
+      tags:
+        - notification
+      description: Shows a notification in the form of a system toast
+      operationId: showToast
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationModel'
+        description: Shows a notification in the form of a system toast
+        required: true
+      responses:
+        '200':
+          content: { }
+          description: Notification successfully showed
+
 components:
   schemas:
     MetricsCommand:
@@ -76,3 +95,21 @@ components:
         context: default
         source: cli
         status: success
+    NotificationModel:
+      type: object
+      title: Notification Model
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        level:
+          type: integer
+          enum:
+            - 0 # Info
+            - 1 # Warning
+            - 2 # Error
+      example:
+        title: Notification title
+        body: Notification message
+        status: 0

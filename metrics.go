@@ -23,35 +23,35 @@ import (
 type MetricsStatus string
 
 const (
-	// MetricsSuccessStatus command success
-	MetricsSuccessStatus MetricsStatus = "success"
-	// MetricsFailureStatus command failure
-	MetricsFailureStatus MetricsStatus = "failure"
-	// MetricsComposeParseFailureStatus failure while parsing compose file
-	MetricsComposeParseFailureStatus MetricsStatus = "failure-compose-parse"
-	// MetricsFileNotFoundFailureStatus failure getting compose file
-	MetricsFileNotFoundFailureStatus MetricsStatus = "failure-file-not-found"
-	// MetricsCommandSyntaxFailureStatus failure reading command
-	MetricsCommandSyntaxFailureStatus MetricsStatus = "failure-cmd-syntax"
-	// MetricsBuildFailureStatus failure building image
-	MetricsBuildFailureStatus MetricsStatus = "failure-build"
-	// MetricsPullFailureStatus failure pulling image
-	MetricsPullFailureStatus MetricsStatus = "failure-pull"
-	// MetricsCanceledStatus command canceled
-	MetricsCanceledStatus MetricsStatus = "canceled"
+	// MetricsStatusSuccess command success
+	MetricsStatusSuccess MetricsStatus = "success"
+	// MetricsStatusFailure command failure
+	MetricsStatusFailure MetricsStatus = "failure"
+	// MetricsStatusComposeParseFailure failure while parsing compose file
+	MetricsStatusComposeParseFailure MetricsStatus = "failure-compose-parse"
+	// MetricsStatusFileNotFoundFailure failure getting compose file
+	MetricsStatusFileNotFoundFailure MetricsStatus = "failure-file-not-found"
+	// MetricsStatusCommandSyntaxFailure failure reading command
+	MetricsStatusCommandSyntaxFailure MetricsStatus = "failure-cmd-syntax"
+	// MetricsStatusBuildFailure failure building image
+	MetricsStatusBuildFailure MetricsStatus = "failure-build"
+	// MetricsStatusPullFailure failure pulling image
+	MetricsStatusPullFailure MetricsStatus = "failure-pull"
+	// MetricsStatusCanceled command canceled
+	MetricsStatusCanceled MetricsStatus = "canceled"
 )
 
 func (m MetricsStatus) Validate() error {
 	for _, s := range []MetricsStatus{
-		MetricsSuccessStatus,
-		MetricsFailureStatus,
-		MetricsComposeParseFailureStatus,
-		MetricsFileNotFoundFailureStatus,
-		MetricsCommandSyntaxFailureStatus,
-		MetricsBuildFailureStatus,
-		MetricsPullFailureStatus,
-		MetricsCanceledStatus,
-	}{
+		MetricsStatusSuccess,
+		MetricsStatusFailure,
+		MetricsStatusComposeParseFailure,
+		MetricsStatusFileNotFoundFailure,
+		MetricsStatusCommandSyntaxFailure,
+		MetricsStatusBuildFailure,
+		MetricsStatusPullFailure,
+		MetricsStatusCanceled,
+	} {
 		if s == m {
 			return nil
 		}
@@ -65,7 +65,7 @@ func (m MetricsStatus) String() string {
 
 func NewMetricsCommand() MetricsCommand {
 	return MetricsCommand{
-		Status: MetricsSuccessStatus,
+		Status: MetricsStatusSuccess,
 	}
 }
 

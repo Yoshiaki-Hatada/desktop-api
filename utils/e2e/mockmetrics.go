@@ -90,7 +90,7 @@ func (s *MockMetricsServer) StartReady() error {
 		Command: "test",
 		Source:  "e2e-test",
 		Context: "default",
-		Status:  desktop_api.MetricsSuccessStatus,
+		Status:  desktop_api.MetricsStatusSuccess,
 	}
 	for i := 0; i < 10; i++ {
 		_, err := client.SendMetrics(context.Background(), metricsCommand)

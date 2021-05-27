@@ -14,6 +14,7 @@ gen-desktop-cli:
 		--additional-properties=isGoSubmodule=true
 	openapi-generator-cli generate -g html2 -i ./docker-cli-api.yaml \
 		-o ./internal/generated/docker-cli/html
+	goimports -w .
 	rm -rf ./internal/generated/docker-cli/.gitignore \
 		./internal/generated/docker-cli/.openapi-generator-ignore \
 		./internal/generated/docker-cli/.travis.yml \

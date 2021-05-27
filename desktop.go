@@ -82,6 +82,22 @@ func (d DockerDesktopClient) GetUUID(ctx context.Context) (string, error) {
 	return result, nil
 }
 
+// SendToast notification to the Docker Desktop server
+func (d DockerDesktopClient) SendToast(ctx context.Context, notification NotificationModel) (*http.Response, error) {
+	err := notification.Validate()
+	if err != nil {
+		return nil, err
+	}
+	var level int32 = int32(notification.Level)
+	n := dockercliapi.NotificationModel{
+		Title: &notification.Title,
+		Body:  &notification.Body,
+		Level: &level,
+	}
+	r := d.NotificationApi.ShowToast(ctx)
+	return r.NotificationModel(n).Execute()
+}
+
 func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg := dockercliapi.NewConfiguration()
 	dockercliapiCfg.Scheme = "http"

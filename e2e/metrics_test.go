@@ -35,12 +35,12 @@ func TestComposeMetrics(t *testing.T) {
 	t.Run("catch default metrics", func(t *testing.T) {
 		client := desktop_api.NewDockerDesktopClient()
 		statuses := []string{
-			desktop_api.MetricsSuccessStatus,
-			desktop_api.MetricsComposeParseFailureStatus,
-			desktop_api.MetricsFileNotFoundFailureStatus,
-			desktop_api.MetricsCommandSyntaxFailureStatus,
-			desktop_api.MetricsPullFailureStatus,
-			desktop_api.MetricsBuildFailureStatus,
+			desktop_api.MetricsStatusSuccess,
+			desktop_api.MetricsStatusComposeParseFailure,
+			desktop_api.MetricsStatusFileNotFoundFailure,
+			desktop_api.MetricsStatusCommandSyntaxFailure,
+			desktop_api.MetricsStatusPullFailure,
+			desktop_api.MetricsStatusBuildFailure,
 		}
 		for _, s := range statuses {
 			_, err := client.SendMetrics(context.Background(), desktop_api.MetricsCommand{

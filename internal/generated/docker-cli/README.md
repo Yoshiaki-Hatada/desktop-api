@@ -80,12 +80,14 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *MetricsApi* | [**PostMetrics**](docs/MetricsApi.md#postmetrics) | **Post** /usage | Metrics endpoint
+*NotificationApi* | [**ShowToast**](docs/NotificationApi.md#showtoast) | **Post** /notifications | GUI system toast endpoint
 *UuidApi* | [**GetUuid**](docs/UuidApi.md#getuuid) | **Get** /uuid | UUID endpoint
 
 
 ## Documentation For Models
 
  - [MetricsCommand](docs/MetricsCommand.md)
+ - [NotificationModel](docs/NotificationModel.md)
 
 
 ## Documentation For Authorization
