@@ -38,6 +38,12 @@ func NewDockerDesktopClient() *DockerDesktopClient {
 	}
 }
 
+func (d *DockerDesktopClient) WithSocketPath(path string) *DockerDesktopClient {
+	desktopcli.Socket = path
+	d.APIClient.GetConfig().HTTPClient.Transport = getHttpTransport()
+	return d
+}
+
 func (d *DockerDesktopClient) WithTimeout(t time.Duration) *DockerDesktopClient {
 	if d.APIClient == nil || d.APIClient.GetConfig().HTTPClient == nil {
 		return d
@@ -122,12 +128,16 @@ func getDockerCliConfiguration() *dockercliapi.Configuration {
 		},
 	}
 	dockercliapiCfg.HTTPClient = &http.Client{
-		Timeout: 500 * time.Millisecond,
-		Transport: &http.Transport{
-			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
-				return desktopcli.Conn()
-			},
-		},
+		Timeout:   500 * time.Millisecond,
+		Transport: getHttpTransport(),
 	}
 	return dockercliapiCfg
+}
+
+func getHttpTransport() *http.Transport {
+	return &http.Transport{
+		DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+			return desktopcli.Conn()
+		},
+	}
 }
