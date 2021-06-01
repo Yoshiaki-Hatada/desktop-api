@@ -1,5 +1,8 @@
 TEST_METRICS_SOCKET=/tmp/docker-cli.sock
 
+GREEN=\033[0;32m
+NC=\033[0m # No Color
+
 .PHONY: all
 all: generate
 
@@ -26,6 +29,14 @@ gen-desktop-cli:
 generate: gen-desktop-cli
 
 .PHONY: test
-test:
+test: test-unit test-e2e
+	@echo -e "All tests ${GREEN}PASSED${NC}!"
+
+.PHONY: test-unit
+test-unit:
+	go test -cover $(shell go list ./... | grep -vE 'e2e')
+
+.PHONY: test-e2e
+test-e2e:
 	rm -f $(TEST_METRICS_SOCKET)
-	TEST_METRICS_SOCKET=$(TEST_METRICS_SOCKET) go test -tags e2e -cover $(shell go list -tags e2e ./... | grep -vE 'e2e')
+	TEST_METRICS_SOCKET=$(TEST_METRICS_SOCKET) go test -tags e2e -cover $(shell go list -tags e2e ./... | grep 'e2e')
