@@ -18,6 +18,7 @@ package e2e
 
 import (
 	"context"
+	"fmt"
 	"testing"
 
 	"github.com/docker/desktop-api"
@@ -28,13 +29,13 @@ import (
 )
 
 func TestComposeMetrics(t *testing.T) {
-	s := e2e.NewMetricsServer(desktopcli.Socket)
+	s := e2e.NewDesktopServer(desktopcli.Socket)
 	assert.NilError(t, s.StartReady(), "Metrics mock server not available")
 	defer s.Stop()
 
+	client := desktop_api.NewDockerDesktopClient()
 	t.Run("catch default metrics", func(t *testing.T) {
-		client := desktop_api.NewDockerDesktopClient()
-		statuses := []string{
+		statuses := []desktop_api.MetricsStatus{
 			desktop_api.MetricsStatusSuccess,
 			desktop_api.MetricsStatusComposeParseFailure,
 			desktop_api.MetricsStatusFileNotFoundFailure,
@@ -59,5 +60,16 @@ func TestComposeMetrics(t *testing.T) {
 			`{"command":"test","context":"moby","source":"e2e-test","status":"failure-pull"}`,
 			`{"command":"test","context":"moby","source":"e2e-test","status":"failure-build"}`,
 		}, s.GetUsage())
+	})
+
+	t.Run("fail validation", func(t *testing.T) {
+		invalidMetricsStatus := desktop_api.MetricsStatus("invalid_status")
+		_, err := client.SendMetrics(context.Background(), desktop_api.MetricsCommand{
+			Command: "test",
+			Context: "moby",
+			Source:  "e2e-test",
+			Status:  invalidMetricsStatus,
+		})
+		assert.Equal(t, err.Error(), fmt.Sprintf("MetricsStatus %q is not valid", invalidMetricsStatus))
 	})
 }
