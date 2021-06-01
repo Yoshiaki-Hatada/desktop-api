@@ -3,11 +3,15 @@
 .travis.yml
 README.md
 api/openapi.yaml
+api_features.go
 api_metrics.go
 api_notification.go
 api_uuid.go
 client.go
 configuration.go
+docs/FeaturesApi.md
+docs/FeaturesModel.md
+docs/FeaturesModelProuser.md
 docs/MetricsApi.md
 docs/MetricsCommand.md
 docs/NotificationApi.md
@@ -16,6 +20,8 @@ docs/UuidApi.md
 git_push.sh
 go.mod
 go.sum
+model_features_model.go
+model_features_model_prouser.go
 model_metrics_command.go
 model_notification_model.go
 response.go

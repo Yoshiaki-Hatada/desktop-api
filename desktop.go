@@ -98,6 +98,19 @@ func (d DockerDesktopClient) SendToast(ctx context.Context, notification Notific
 	return r.NotificationModel(n).Execute()
 }
 
+// IsProUser checks if it's a Pro User
+func (d DockerDesktopClient) IsProUser(ctx context.Context) (bool, error) {
+	f, r, err := d.FeaturesApi.GetFeatures(ctx).Execute()
+	if err != nil {
+		return false, err
+	}
+	if r.StatusCode != 200 {
+		return false, fmt.Errorf("status %d while checking if it's a Pro User", r.StatusCode)
+	}
+
+	return f.Prouser != nil && f.Prouser.Enabled, nil
+}
+
 func getDockerCliConfiguration() *dockercliapi.Configuration {
 	dockercliapiCfg := dockercliapi.NewConfiguration()
 	dockercliapiCfg.Scheme = "http"

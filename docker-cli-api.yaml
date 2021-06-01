@@ -19,6 +19,7 @@ tags:
   - name: metrics
   - name: uuid
   - name: notification
+  - name: features
 paths:
   /usage:
     post:
@@ -48,6 +49,20 @@ paths:
           description: OK
       operationId: get-uuid
       description: UUID endpoint to get Docker Desktop UUID
+  /features:
+    get:
+      summary: Features endpoint
+      tags:
+        - features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeaturesModel'
+      operationId: get-features
+      description: Features endpoint
   /notifications:
     post:
       summary: GUI system toast endpoint
@@ -66,7 +81,6 @@ paths:
         '200':
           content: { }
           description: Notification successfully showed
-
 components:
   schemas:
     MetricsCommand:
@@ -113,3 +127,18 @@ components:
         title: Notification title
         body: Notification message
         status: 0
+    FeaturesModel:
+      type: object
+      title: Features Model
+      properties:
+        prouser:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: true when it's a Pro user
+          required:
+            - enabled
+      example:
+        prouser:
+          enabled: true

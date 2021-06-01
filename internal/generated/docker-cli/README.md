@@ -79,6 +79,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*FeaturesApi* | [**GetFeatures**](docs/FeaturesApi.md#getfeatures) | **Get** /features | Features endpoint
 *MetricsApi* | [**PostMetrics**](docs/MetricsApi.md#postmetrics) | **Post** /usage | Metrics endpoint
 *NotificationApi* | [**ShowToast**](docs/NotificationApi.md#showtoast) | **Post** /notifications | GUI system toast endpoint
 *UuidApi* | [**GetUuid**](docs/UuidApi.md#getuuid) | **Get** /uuid | UUID endpoint
@@ -86,6 +87,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [FeaturesModel](docs/FeaturesModel.md)
+ - [FeaturesModelProuser](docs/FeaturesModelProuser.md)
  - [MetricsCommand](docs/MetricsCommand.md)
  - [NotificationModel](docs/NotificationModel.md)
 

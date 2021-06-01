@@ -49,6 +49,8 @@ type APIClient struct {
 
 	// API Services
 
+	FeaturesApi FeaturesApi
+
 	MetricsApi MetricsApi
 
 	NotificationApi NotificationApi
@@ -72,6 +74,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.FeaturesApi = (*FeaturesApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.NotificationApi = (*NotificationApiService)(&c.common)
 	c.UuidApi = (*UuidApiService)(&c.common)
@@ -107,7 +110,7 @@ func selectHeaderAccept(accepts []string) string {
 	return strings.Join(accepts, ",")
 }
 
-// contains is a case insenstive match, finding needle in a haystack
+// contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
 		if strings.ToLower(a) == strings.ToLower(needle) {

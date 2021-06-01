@@ -21,6 +21,7 @@ tags:
 - name: metrics
 - name: uuid
 - name: notification
+- name: features
 paths:
   /usage:
     post:
@@ -50,6 +51,20 @@ paths:
       summary: UUID endpoint
       tags:
       - uuid
+  /features:
+    get:
+      description: Features endpoint
+      operationId: get-features
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeaturesModel'
+          description: OK
+      summary: Features endpoint
+      tags:
+      - features
   /notifications:
     post:
       description: Shows a notification in the form of a system toast
@@ -113,4 +128,21 @@ components:
           - 2
           type: integer
       title: Notification Model
+      type: object
+    FeaturesModel:
+      example:
+        prouser:
+          enabled: true
+      properties:
+        prouser:
+          $ref: '#/components/schemas/FeaturesModel_prouser'
+      title: Features Model
+      type: object
+    FeaturesModel_prouser:
+      properties:
+        enabled:
+          description: true when it's a Pro user
+          type: boolean
+      required:
+      - enabled
       type: object
