@@ -1,5 +1,3 @@
-// +build windows
-
 /*
    Copyright 2021 Docker Compose CLI authors
 
@@ -22,6 +20,8 @@ import (
 	"net"
 	"strings"
 	"time"
+
+	"github.com/Microsoft/go-winio"
 )
 
 var (
@@ -31,7 +31,11 @@ var (
 func Conn() (net.Conn, error) {
 	if strings.HasPrefix(Socket, `\\.\pipe\`) {
 		timeout := 200 * time.Millisecond
-		return winio.DialPipe(Socket, &timeout)
+		return winio.DialPipe(Socket, &timeout), nil
 	}
 	return net.Dial("unix", Socket)
+}
+
+func ListenSocket(socket string) (net.Listener, error) {
+	return winio.ListenPipe(socket, nil), nil
 }

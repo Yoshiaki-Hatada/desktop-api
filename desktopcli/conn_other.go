@@ -18,7 +18,10 @@
 
 package desktopcli
 
-import "net"
+import (
+	"net"
+	"strings"
+)
 
 var (
 	Socket = "/var/run/docker-cli.sock"
@@ -26,4 +29,8 @@ var (
 
 func Conn() (net.Conn, error) {
 	return net.Dial("unix", Socket)
+}
+
+func ListenSocket(socket string) (net.Listener, error) {
+	return net.Listen("unix", strings.TrimPrefix(socket, "unix://"))
 }
