@@ -29,61 +29,62 @@ import (
 	"github.com/labstack/echo"
 )
 
-// MockMetricsServer a mock registering all metrics POST invocations
-type MockMetricsServer struct {
-	socket string
-	usage  []string
-	e      *echo.Echo
+// DesktopMockServer a mock registering all invocations
+type DesktopMockServer struct {
+	socket        string
+	requestBodies []string
+	e             *echo.Echo
 }
 
-// NewMetricsServer instantiate a new MockMetricsServer
-func NewMetricsServer(socket string) *MockMetricsServer {
-	return &MockMetricsServer{
+// NewDesktopServer instantiate a new DesktopMockServer
+func NewDesktopServer(socket string) *DesktopMockServer {
+	return &DesktopMockServer{
 		socket: socket,
 		e:      echo.New(),
 	}
 }
 
-func (s *MockMetricsServer) handlePostUsage(c echo.Context) error {
-	body, err := ioutil.ReadAll(c.Request().Body)
+func (s *DesktopMockServer) handlePost(c echo.Context) error {
+	b, err := ioutil.ReadAll(c.Request().Body)
 	if err != nil {
 		return err
 	}
-	cliUsage := strings.TrimSpace(string(body))
-	s.usage = append(s.usage, cliUsage)
+	body := strings.TrimSpace(string(b))
+	s.requestBodies = append(s.requestBodies, body)
 	return c.String(http.StatusOK, "")
 }
 
-// GetUsage get usage
-func (s *MockMetricsServer) GetUsage() []string {
-	return s.usage
+// GetUsage get requestBodies
+func (s *DesktopMockServer) GetUsage() []string {
+	return s.requestBodies
 }
 
-// ResetUsage reset usage
-func (s *MockMetricsServer) ResetUsage() {
-	s.usage = []string{}
+// ResetUsage reset requestBodies
+func (s *DesktopMockServer) ResetUsage() {
+	s.requestBodies = []string{}
 }
 
 // Stop stop the mock server
-func (s *MockMetricsServer) Stop() {
+func (s *DesktopMockServer) Stop() {
 	_ = s.e.Close()
 }
 
 // Start start the mock server
-func (s *MockMetricsServer) Start() {
+func (s *DesktopMockServer) Start() {
 	go func() {
 		listener, err := net.Listen("unix", strings.TrimPrefix(s.socket, "unix://"))
 		if err != nil {
 			log.Fatal(err)
 		}
 		s.e.Listener = listener
-		s.e.POST("/usage", s.handlePostUsage)
+		s.e.POST("/usage", s.handlePost)
+		s.e.GET("/usage", s.handlePost)
 		_ = s.e.Start(":1323")
 	}()
 }
 
 // StartReady start the mock server
-func (s *MockMetricsServer) StartReady() error {
+func (s *DesktopMockServer) StartReady() error {
 	s.Start()
 	client := desktop_api.NewDockerDesktopClient()
 	metricsCommand := desktop_api.MetricsCommand{
